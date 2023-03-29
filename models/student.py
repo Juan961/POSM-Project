@@ -1,42 +1,52 @@
 import uuid
 
-from data import STUDENTS, PROFESSORS, ASSIGNEMETS
+from data.db import get_cursor, commit_db
+
+from exceptions import ModelNotFound
 
 from .assigment import Assigment
 
 class Student:
     def __init__(self, name) -> None:
         self.id = str(uuid.uuid4())
-
         self.name = name
-        self.assigments = []
 
-        STUDENTS.append(self)
+        cursor = get_cursor()
+        cursor.execute("INSERT INTO Student (id, name) VALUES (?, ?)", (self.id, self.name))
+        cursor.close()
 
-    def __str__(self):
-        return self.name
+        commit_db()
 
     @staticmethod
-    def get_student(id):
-        for student in STUDENTS:
-            if student.id == id:
-                return student 
+    def get_student_by_id(id):
+        cursor = get_cursor()
+        cursor.execute("SELECT * FROM Student WHERE id = ?", (id,))
+        result = cursor.fetchone()
+
+        if result:
+            return result
 
         return None
 
     @staticmethod
-    def get_all_students(id):
-        return STUDENTS
+    def get_all_students():
+        cursor = get_cursor()
+
+        cursor.execute("SELECT * FROM Student")
+        rows = cursor.fetchall()
+        cursor.close()
+
+        return rows
 
     @staticmethod
     def add_asigment_to_user(student_id, assigment_id):
-        student = Student.get_student(student_id)
-        if not student: raise Exception("Student not found")
+        student = Student.get_student_by_id(student_id)
+        if not student: raise ModelNotFound(f"Student id: {student_id}")
 
-        assigment = Assigment.get_assigment(assigment)
-        if not assigment: raise Exception("Assigment not found")
+        assigment = Assigment.get_assigment(assigment_id)
+        if not assigment: raise ModelNotFound(f"Assignment id: {assigment_id}")
 
-        student._add_asigment_to_user(assigment_id)
+        cursor = get_cursor()
 
-    def _add_asigment_to_user(self, assigment_id):
-        self.assigments.append(assigment_id)
+        cursor.execute("INSERT INTO StudentAssigment (student_id, assigment_id) VALUES (?, ?)", (student_id, assigment_id))
+        cursor.close()

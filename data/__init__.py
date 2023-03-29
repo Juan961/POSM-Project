@@ -1,3 +1,0 @@
-PROFESSORS = []
-ASSIGNEMETS = []
-STUDENTS = []

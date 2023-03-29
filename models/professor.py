@@ -1,34 +1,27 @@
 import uuid
 
-from data import STUDENTS, PROFESSORS, ASSIGNEMETS
+from data.db import get_cursor, commit_db
 
-from .assigment import Assigment
+from exceptions import ModelNotFound
 
 class Professor:
     def __init__(self, name) -> None:
         self.id = str(uuid.uuid4())
-
         self.name = name
-        self.assigments = []
 
-        PROFESSORS.append(self)
+        cursor = get_cursor()
+        cursor.execute("INSERT INTO Professor (id, name) VALUES (?, ?)", (self.id, self.name))
+        cursor.close()
 
-    def __str__(self):
-        return self.name
+        commit_db()
 
     @staticmethod
-    def get_teacher(id):
-        for professor in PROFESSORS:
-            if professor.id == id:
-                return professor 
+    def get_professor(id):
+        cursor = get_cursor()
+        cursor.execute("SELECT * FROM Professor WHERE id = ?", (id,))
+        result = cursor.fetchone()
+
+        if result:
+            return result
 
         return None
-
-    @staticmethod
-    def create_assigment(teacher_id, assigment_name):
-        professor = Professor.get_teacher(teacher_id)
-        if not professor: raise Exception("Professor not found")
-
-        assigment = Assigment(assigment_name, professor.id)
-
-        return assigment
