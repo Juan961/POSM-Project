@@ -1,27 +1,19 @@
 import tkinter as tk
+from tkinter import ttk
 
-from models import Student, Professor, Assigment
+from .student import StudentView 
+from .professor import ProfessorView 
 
-class StudentsTable:
+class MainView:
+    def __init__(self) -> None:
+        main_window = tk.Tk()
+        main_window.title("Project")
 
-    def __init__(self, root, rows, columns, matrix):
+        boton_tabla1 = ttk.Button(main_window, text="Soy estudiante", command=StudentView)
+        boton_tabla1.pack(padx=10, pady=10)
+        boton_tabla2 = ttk.Button(main_window, text="Soy docente", command=ProfessorView)
+        boton_tabla2.pack(padx=10, pady=10)
+        boton_salir = ttk.Button(main_window, text="Salir", command=main_window.destroy)
+        boton_salir.pack(pady=10)
 
-        self.e = tk.Entry(root, width=20)
-
-        for i in range(rows):
-            for j in range(columns):
-
-                self.e.grid(row=i, column=j)
-                self.e.insert(j, "asd")
-
-        self.e.place(x=80, y=100)
-
-main_window = tk.Tk()
-
-main_window.geometry('500x500')
-
-main_window.title("Project")
-
-tk.Label(main_window, text="Students: ").place(x=80, y=50)
-
-table = StudentsTable(main_window, len(Student.get_all_students()), 2, Student.get_all_students())
+        main_window.mainloop()

@@ -1,14 +1,14 @@
 from models import Student, Professor, Assigment
 
-from view.main import main_window
+from view import Main
 
 def main():
     try:
-        es_1 = Student("Juan")
-        pro_1 = Professor("Juan")
-        as_1 = Assigment("juan", pro_1.id)
+        main_es = Student("Juan")
+        main_pr = Professor("Juan")
+        main_as = Assigment("juan", main_pr.id)
 
-        # main_window.mainloop()
+        Main()
 
     except Exception as e:
         print(e)
