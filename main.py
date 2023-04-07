@@ -4,9 +4,9 @@ from view import Main
 
 def main():
     try:
-        main_es = Student("Juan")
-        main_pr = Professor("Juan")
-        main_as = Assigment("juan", main_pr.id)
+        # main_es = Student("Juan")
+        # main_pr = Professor("Juan")
+        # main_as = Assigment("juan", main_pr.id)
 
         Main()
 

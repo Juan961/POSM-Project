@@ -8,22 +8,23 @@ class StudentView:
         root = tk.Tk()
         root.title("Notas")
 
-        frame = ttk.Frame(root, padding="3")
-        frame.pack(fill="both", expand=True)
+        frame = ttk.Frame(root, padding="20")
+        frame.grid(row=1, column=0, columnspan=5)
 
-        self.table = ttk.Treeview(frame, columns=("nombre", "Cor_1","Cor_2","Notaf"))
+        self.table = ttk.Treeview(frame, columns=("nombre", "Cor_1", "Cor_2", "Cor_3", "Notaf"))
 
         # Definir encabezados de columna
         self.table.heading("#0", text="ID")
         self.table.heading("nombre", text="Materia")
         self.table.heading("Cor_1", text="Corte 1")
         self.table.heading("Cor_2", text="Corte 2")
+        self.table.heading("Cor_3", text="Corte 3")
         self.table.heading("Notaf", text="Nota final")
-        self.table.pack(side="left", fill="both", expand=True)
+        self.table.grid(row=1, column=0, columnspan=5)
 
         # Crear widgets para ingresar datos
         self.materia_entry = ttk.Entry(root, width=20)
-        
+
         self.labo1_entry = ttk.Entry(root, width=5)
         self.Pory1_entry = ttk.Entry(root, width=5)
         self.Par1_entry = ttk.Entry(root, width=5)
@@ -37,38 +38,41 @@ class StudentView:
         self.Par3_entry = ttk.Entry(root, width=5)
 
         # Crear botón para agregar datos a la tabla
-        self.boton_volver = ttk.Button(frame, text="Volver a escojer rol", command=root.destroy)
-        self.boton_volver.pack(pady=10)
-        self.boton_salir = ttk.Button(root, text="Salir", command=root.destroy)
-        self.boton_salir.pack(pady=10)
+        self.boton_volver = ttk.Button(frame, text="Volver a escojer rol", command=root.destroy).grid(row=0, column=4, pady=10)
         self.boton_agregar = ttk.Button(root, text="Agregar", command=self.insertar_datos)
 
         # Agregar widgets al Frame principal
-        ttk.Label(root, text="Nombre").pack(side="top", padx=0, pady=0) 
-        self.materia_entry.pack(side="top", padx=0, pady=0)
+        ttk.Label(root, text="Nombre").grid(row=2, column=1)
+        self.materia_entry.grid(row=2, column=2)
 
-        ttk.Label(root, text="Laboratorio 1er corte:").pack(side="top", padx=10, pady=5)
-        self.labo1_entry.pack(side="top", padx=10, pady=5)
-        ttk.Label(root, text="Proyecto 1er corte:").pack(side="top", padx=10, pady=5)
-        self.Pory1_entry.pack(side="top", padx=10, pady=5)
-        ttk.Label(root, text="Parcial 1er corte: ").pack(side="top", padx=10,pady=5)
-        self.Par1_entry.pack(side="top", padx=10, pady=5)
-        
-        ttk.Label(root, text="Laboratorio 2do corte:").pack(side="top", padx=10, pady=5)
-        self.labo2_entry.pack(side="top", padx=10, pady=5)
-        ttk.Label(root, text="Proyecto 2do corte:").pack(side="top", padx=10, pady=5)
-        self.Pory2_entry.pack(side="top", padx=10, pady=5)
-        ttk.Label(root, text="Parcial 2do corte: ").pack(side="top", padx=10,pady=5)
-        self.Par2_entry.pack(side="top", padx=10, pady=5)
+        ttk.Label(root, text="Primer corte").grid(row=4, column=0, pady=10)
 
-        ttk.Label(root, text="Laboratorio 3er corte:").pack(side="top", padx=10, pady=5)
-        self.labo3_entry.pack(side="top", padx=10, pady=5)
-        ttk.Label(root, text="Proyecto 3er corte:").pack(side="top", padx=10, pady=5)
-        self.Pory3_entry.pack(side="top", padx=10, pady=5)
-        ttk.Label(root, text="Parcial 3er corte: ").pack(side="top", padx=10,pady=5)
-        self.Par3_entry.pack(side="top", padx=10, pady=5)
+        ttk.Label(root, text="Laboratorio").grid(row=5, column=0)
+        self.labo1_entry.grid(row=6, column=0)
+        ttk.Label(root, text="Proyecto").grid(row=7, column=0)
+        self.Pory1_entry.grid(row=8, column=0)
+        ttk.Label(root, text="Parcial").grid(row=9, column=0)
+        self.Par1_entry.grid(row=10, column=0)
 
-        self.boton_agregar.pack(side="top", padx=10, pady=10)
+        ttk.Label(root, text="Segundo corte").grid(row=4, column=2, pady=10)
+
+        ttk.Label(root, text="Laboratorio").grid(row=5, column=2)
+        self.labo2_entry.grid(row=6, column=2)
+        ttk.Label(root, text="Proyecto").grid(row=7, column=2)
+        self.Pory2_entry.grid(row=8, column=2)
+        ttk.Label(root, text="Parcial").grid(row=9, column=2)
+        self.Par2_entry.grid(row=10, column=2)
+
+        ttk.Label(root, text="Tercer corte").grid(row=4, column=4, pady=10)
+
+        ttk.Label(root, text="Laboratorio").grid(row=5, column=4)
+        self.labo3_entry.grid(row=6, column=4)
+        ttk.Label(root, text="Proyecto").grid(row=7, column=4)
+        self.Pory3_entry.grid(row=8, column=4)
+        ttk.Label(root, text="Parcial").grid(row=9, column=4)
+        self.Par3_entry.grid(row=10, column=4)
+
+        self.boton_agregar.grid(row=12, column=2, pady=10)
 
         root.mainloop()
 

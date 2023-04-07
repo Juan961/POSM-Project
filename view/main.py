@@ -6,14 +6,12 @@ from .professor import ProfessorView
 
 class MainView:
     def __init__(self) -> None:
-        main_window = tk.Tk()
-        main_window.title("Project")
+        self.main_window = tk.Tk()
+        self.main_window.title("Project")
+        self.main_window.geometry("800x600")
 
-        boton_tabla1 = ttk.Button(main_window, text="Soy estudiante", command=StudentView)
-        boton_tabla1.pack(padx=10, pady=10)
-        boton_tabla2 = ttk.Button(main_window, text="Soy docente", command=ProfessorView)
-        boton_tabla2.pack(padx=10, pady=10)
-        boton_salir = ttk.Button(main_window, text="Salir", command=main_window.destroy)
-        boton_salir.pack(pady=10)
+        ttk.Button(self.main_window, text="Soy estudiante", command=StudentView).grid(row=0, column=0)
+        ttk.Button(self.main_window, text="Soy docente", command=ProfessorView).grid(row=0, column=1)
+        ttk.Button(self.main_window, text="Salir", command=self.main_window.destroy).grid(row=1, column=0, columnspan=2)
 
-        main_window.mainloop()
+        self.main_window.mainloop()
