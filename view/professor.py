@@ -1,116 +1,226 @@
-import tkinter as tk
-from tkinter import ttk
+from PyQt5 import uic
+from PyQt5.QtWidgets import QMainWindow, QApplication
+
 
 from models import Student, Professor, Assigment
+from utils.exception import ModelNotFound
 
-class ProfessorView:
+
+class ProfessorView(QMainWindow):
     def __init__(self) -> None:
-        root = tk.Tk()
-        root.title("Notas")
+        super(ProfessorView, self).__init__()
+        uic.loadUi('view/soyprofesor/notasEstu.ui', self)
+        self.setupUi(self)
+        self.show()
 
-        frame = ttk.Frame(root, padding="20")
-        frame.grid(row=1, column=0, columnspan=5)
 
-        self.table = ttk.Treeview(frame, columns=("nombre", "Cor_1", "Cor_2", "Cor_3", "Notaf"))
+    def setupUi(self, MainWindow):
+        self.pushButton.clicked.connect(self.handle_first_quarter)
+        self.pushButton_2.clicked.connect(self.handle_second_quarter)
+        self.pushButton_3.clicked.connect(self.handle_third_quarter)
+        self.pushButton_4.clicked.connect(self.handle_final_notes)
 
-        # Definir encabezados de columna
-        self.table.heading("#0", text="ID")
-        self.table.heading("nombre", text="Estudiante")
-        self.table.heading("Cor_1", text="Corte 1")
-        self.table.heading("Cor_2", text="Corte 2")
-        self.table.heading("Cor_3", text="Corte 3")
-        self.table.heading("Notaf", text="Nota final")
-        self.table.grid(row=1, column=0, columnspan=5)
 
-        # Crear widgets para ingresar datos
-        self.materia_entry = ttk.Entry(root, width=20)
+    def handle_first_quarter(self):
+        self.first_quarter = FirstQuarter()
+        self.first_quarter.show()
 
-        self.labo1_entry = ttk.Entry(root, width=5)
-        self.Pory1_entry = ttk.Entry(root, width=5)
-        self.Par1_entry = ttk.Entry(root, width=5)
 
-        self.labo2_entry = ttk.Entry(root, width=5)
-        self.Pory2_entry = ttk.Entry(root, width=5)
-        self.Par2_entry = ttk.Entry(root, width=5)
+    def handle_second_quarter(self):
+        self.second_quarter = SecondQuarter()
+        self.second_quarter.show()
 
-        self.labo3_entry = ttk.Entry(root, width=5)
-        self.Pory3_entry = ttk.Entry(root, width=5)
-        self.Par3_entry = ttk.Entry(root, width=5)
 
-        self.boton_volver = ttk.Button(frame, text="Volver a escojer rol", command=root.destroy).grid(row=0, column=4, pady=10)
-        self.boton_agregar = ttk.Button(root, text="Agregar", command=self.insertar_datos)
+    def handle_third_quarter(self):
+        self.third_quarter = ThirdQuarter()
+        self.third_quarter.show()
 
-        # Agregar widgets al Frame principal
-        ttk.Label(root, text="Nombre").grid(row=2, column=1)
-        self.materia_entry.grid(row=2, column=2)
 
-        ttk.Label(root, text="Primer corte").grid(row=4, column=0, pady=10)
+    def handle_final_notes(self):
+        self.final = FinalNotes()
+        self.final.show()
 
-        ttk.Label(root, text="Laboratorio").grid(row=5, column=0)
-        self.labo1_entry.grid(row=6, column=0)
-        ttk.Label(root, text="Proyecto").grid(row=7, column=0)
-        self.Pory1_entry.grid(row=8, column=0)
-        ttk.Label(root, text="Parcial").grid(row=9, column=0)
-        self.Par1_entry.grid(row=10, column=0)
 
-        ttk.Label(root, text="Segundo corte").grid(row=4, column=2, pady=10)
+    def handle_exit(self):
+        QApplication.quit()
 
-        ttk.Label(root, text="Laboratorio").grid(row=5, column=2)
-        self.labo2_entry.grid(row=6, column=2)
-        ttk.Label(root, text="Proyecto").grid(row=7, column=2)
-        self.Pory2_entry.grid(row=8, column=2)
-        ttk.Label(root, text="Parcial").grid(row=9, column=2)
-        self.Par2_entry.grid(row=10, column=2)
 
-        ttk.Label(root, text="Tercer corte").grid(row=4, column=4, pady=10)
+class FirstQuarter(QMainWindow):
+    def __init__(self) -> None:
+        super(FirstQuarter, self).__init__()
+        uic.loadUi('view/soyprofesor/corte1P.ui', self)
+        self.setupUi(self)
+        self.show()
 
-        ttk.Label(root, text="Laboratorio").grid(row=5, column=4)
-        self.labo3_entry.grid(row=6, column=4)
-        ttk.Label(root, text="Proyecto").grid(row=7, column=4)
-        self.Pory3_entry.grid(row=8, column=4)
-        ttk.Label(root, text="Parcial").grid(row=9, column=4)
-        self.Par3_entry.grid(row=10, column=4)
 
-        self.boton_agregar.grid(row=12, column=2, pady=10)
+    def setupUi(self, MainWindow):
+        self.pushButton.clicked.connect(self.handle_add_note)
+        self.pushButton_2.clicked.connect(self.handle_go_back)
 
-        root.mainloop()
+        # Test
+        self.plainTextEdit_4.setPlainText("Matemáticas")
+        self.plainTextEdit.setPlainText("4.0")
+        self.plainTextEdit_2.setPlainText("3.0")
+        self.plainTextEdit_3.setPlainText("1.0")
 
-    def insertar_datos(self):
-        # Obtener valores ingresados por el usuario
-        nombre = self.materia_entry.get()
 
-        nlab1 = float(self.labo1_entry.get())
-        npro1 = float(self.Pory1_entry.get())
-        npar1 = float(self.Par1_entry.get())
-        cor1n= (nlab1*(1/3))+(npro1*(1/3))+(npar1*(1/3))
+    def handle_add_note(self):
+        try:
+            name = self.plainTextEdit_4.toPlainText()
 
-        nlab2 = float(self.labo2_entry.get())
-        npro2 = float(self.Pory2_entry.get())
-        npar2 = float(self.Par2_entry.get())
-        cor2n= (nlab2*(1/3))+(npro2*(1/3))+(npar2*(1/3))
+            student = Student.get_student_by_name(name)
 
-        nlab3 = float(self.labo3_entry.get())
-        npro3 = float(self.Pory3_entry.get())
-        npar3 = float(self.Par3_entry.get())
-        cor3n= (nlab3*(3/10))+(npro3*(3/10))+(npar3*(4/10))
+            laboratory_note = float( self.plainTextEdit.toPlainText() )
+            project_note = float( self.plainTextEdit_2.toPlainText() )
+            partial_note = float( self.plainTextEdit_3.toPlainText() )
 
-        notaf=(cor1n*0.3)+(cor2n*0.3)+(cor3n*0.4)
+            total_note = (laboratory_note + project_note + partial_note) / 3
 
-        # Insertar datos en la tabla
-        id = len(self.table.get_children()) + 1
-        self.table.insert("", "end", text=id, values=(nombre, cor1n, cor2n, cor3n, notaf))
+            self.textBrowser.setPlainText( str( round( total_note, 4 ) ) )
 
-        # Limpiar widgets de entrada
-        self.materia_entry.delete(0, tk.END)
+        except ModelNotFound as e:
+            print(f"{e} not found")
 
-        self.labo1_entry.delete(0, tk.END)
-        self.Pory1_entry.delete(0, tk.END)
-        self.Par1_entry.delete(0,tk.END)
+        except ValueError:
+            print("Value not valid is not float")
 
-        self.labo2_entry.delete(0, tk.END)
-        self.Pory2_entry.delete(0, tk.END)
-        self.Par2_entry.delete(0,tk.END)
 
-        self.labo3_entry.delete(0, tk.END)
-        self.Pory3_entry.delete(0, tk.END)
-        self.Par3_entry.delete(0,tk.END)
+    def handle_go_back(self):
+        self.close()
+
+
+class SecondQuarter(QMainWindow):
+    def __init__(self) -> None:
+        super(SecondQuarter, self).__init__()
+        uic.loadUi('view/soyprofesor/corte2P.ui', self)
+        self.setupUi(self)
+        self.show()
+
+
+    def setupUi(self, MainWindow):
+        self.pushButton.clicked.connect(self.handle_add_note)
+        self.pushButton_2.clicked.connect(self.handle_go_back)
+
+        # Test
+        self.plainTextEdit_4.setPlainText("Matemáticas")
+        self.plainTextEdit.setPlainText("4.0")
+        self.plainTextEdit_2.setPlainText("3.0")
+        self.plainTextEdit_3.setPlainText("1.0")
+
+
+    def handle_add_note(self):
+        try:
+            name = self.plainTextEdit_4.toPlainText()
+
+            student = Student.get_student_by_name(name)
+
+            laboratory_note = float( self.plainTextEdit.toPlainText() )
+            project_note = float( self.plainTextEdit_2.toPlainText() )
+            partial_note = float( self.plainTextEdit_3.toPlainText() )
+
+            total_note = (laboratory_note + project_note + partial_note) / 3
+
+            self.textBrowser.setPlainText( str( round( total_note, 4 ) ) )
+
+        except ModelNotFound as e:
+            print(f"{e} not found")
+
+        except ValueError:
+            print("Value not valid is not float")
+
+    def handle_go_back(self):
+        self.close()
+
+
+class ThirdQuarter(QMainWindow):
+    def __init__(self) -> None:
+        super(ThirdQuarter, self).__init__()
+        uic.loadUi('view/soyprofesor/corte3P.ui', self)
+        self.setupUi(self)
+        self.show()
+
+
+    def setupUi(self, MainWindow):
+        self.pushButton.clicked.connect(self.handle_add_note)
+        self.pushButton_2.clicked.connect(self.handle_go_back)
+
+        # Test
+        self.plainTextEdit_4.setPlainText("Matemáticas")
+        self.plainTextEdit.setPlainText("4.0")
+        self.plainTextEdit_2.setPlainText("3.0")
+        self.plainTextEdit_3.setPlainText("1.0")
+
+
+    def handle_add_note(self):
+        try:
+
+            name = self.plainTextEdit_4.toPlainText()
+
+            student = Student.get_student_by_name(name)
+
+            laboratory_note = float( self.plainTextEdit.toPlainText() )
+            project_note = float( self.plainTextEdit_2.toPlainText() )
+            partial_note = float( self.plainTextEdit_3.toPlainText() )
+
+
+            total_note = (laboratory_note + project_note + partial_note) / 3
+
+            self.textBrowser.setPlainText( str( round( total_note, 4 ) ) )
+
+        except ModelNotFound as e:
+            print(f"{e} not found")
+
+        except ValueError:
+            print("Value not valid is not float")
+
+
+    def handle_go_back(self):
+        self.close()
+
+
+class FinalNotes(QMainWindow):
+    def __init__(self) -> None:
+        super(FinalNotes, self).__init__()
+        uic.loadUi('view/soyprofesor/NotaFinalP.ui', self)
+        self.setupUi(self)
+        self.show()
+
+
+    def setupUi(self, MainWindow):
+        self.pushButton.clicked.connect(self.handle_search)
+        self.pushButton_2.clicked.connect(self.handle_go_back)
+
+        # Test
+        self.textEdit.setPlainText("Juan")
+
+
+    def handle_search(self):
+        try:
+            student_name = self.textEdit.toPlainText()
+
+            # Search
+        
+            student = Student.get_student_by_name(student_name)
+
+            # Test
+            assigment = { "first": 5.0, "second": 5.0, "third": 0.0 }
+
+            first_note = assigment["first"]
+            second_note = assigment["second"]
+            third_note = assigment["third"]
+
+            self.textBrowser.setPlainText( str( first_note ) )
+            self.textBrowser_2.setPlainText( str( second_note ) )
+            self.textBrowser_3.setPlainText( str( third_note ) )
+
+            total_note = ( first_note * 0.3 ) + ( second_note * 0.3 )  + ( third_note * 0.4 )
+
+            self.textBrowser_4.setPlainText( str( round( total_note, 4 ) ) )
+
+
+        except ModelNotFound as e:
+            print(f"{e} not found")
+
+
+    def handle_go_back(self):
+        self.close()

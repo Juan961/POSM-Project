@@ -1,17 +1,32 @@
-import tkinter as tk
-from tkinter import ttk
+from PyQt5 import uic
+from PyQt5.QtWidgets import QMainWindow, QApplication
 
-from .student import StudentView 
-from .professor import ProfessorView 
 
-class MainView:
+from .student import StudentView
+from .professor import ProfessorView
+
+
+class MainView(QMainWindow):
     def __init__(self) -> None:
-        self.main_window = tk.Tk()
-        self.main_window.title("Project")
-        self.main_window.geometry("800x600")
+        super(MainView, self).__init__()
+        uic.loadUi('view/inicio.ui', self)
+        self.setupUi(self)
+        self.show()
 
-        ttk.Button(self.main_window, text="Soy estudiante", command=StudentView).grid(row=0, column=0)
-        ttk.Button(self.main_window, text="Soy docente", command=ProfessorView).grid(row=0, column=1)
-        ttk.Button(self.main_window, text="Salir", command=self.main_window.destroy).grid(row=1, column=0, columnspan=2)
 
-        self.main_window.mainloop()
+    def setupUi(self, MainWindow):
+        self.pushButton.clicked.connect(self.handle_professor_view)
+        self.pushButton_2.clicked.connect(self.handle_student_view)
+        self.pushButton_3.clicked.connect(self.handle_exit)
+
+
+    def handle_professor_view(self):
+        self.profesor_view = ProfessorView()
+
+
+    def handle_student_view(self):
+        self.student_view = StudentView()
+
+
+    def handle_exit(self):
+        QApplication.quit()

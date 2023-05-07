@@ -2,7 +2,7 @@ import uuid
 
 from data.db import get_cursor, commit_db
 
-from exceptions import ModelNotFound
+from utils.exception import ModelNotFound
 
 from .assigment import Assigment
 
@@ -17,6 +17,18 @@ class Student:
 
         commit_db()
 
+
+    @staticmethod
+    def get_student_by_name(name):
+        cursor = get_cursor()
+        cursor.execute("SELECT * FROM Student WHERE name = ?", (name,))
+        result = cursor.fetchone()
+
+        if result: return result
+
+        # raise ModelNotFound(f"{ name } student nor found")
+
+
     @staticmethod
     def get_student_by_id(id):
         cursor = get_cursor()
@@ -26,7 +38,8 @@ class Student:
         if result:
             return result
 
-        return None
+        # raise ModelNotFound(f"{ id } student nor found")
+
 
     @staticmethod
     def get_all_students():
@@ -37,6 +50,7 @@ class Student:
         cursor.close()
 
         return rows
+
 
     @staticmethod
     def add_asigment_to_user(student_id, assigment_id):

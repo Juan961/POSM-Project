@@ -2,7 +2,7 @@ import uuid
 
 from data.db import get_cursor, commit_db
 
-from exceptions import ModelNotFound
+from utils.exception import ModelNotFound
 
 class Professor:
     def __init__(self, name) -> None:
