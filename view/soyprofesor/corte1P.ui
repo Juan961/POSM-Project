@@ -32,7 +32,7 @@
     <widget class="QLabel" name="label">
      <property name="geometry">
       <rect>
-       <x>230</x>
+       <x>250</x>
        <y>10</y>
        <width>301</width>
        <height>61</height>
@@ -167,7 +167,7 @@
     <widget class="QLabel" name="label_5">
      <property name="geometry">
       <rect>
-       <x>20</x>
+       <x>70</x>
        <y>70</y>
        <width>311</width>
        <height>61</height>
@@ -274,6 +274,50 @@
       <string>Volver</string>
      </property>
     </widget>
+    <widget class="QFrame" name="frame_2">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>60</y>
+       <width>631</width>
+       <height>91</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(175, 175, 175);</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+    </widget>
+    <widget class="QTableWidget" name="tableWidget">
+     <property name="geometry">
+      <rect>
+       <x>180</x>
+       <y>150</y>
+       <width>256</width>
+       <height>192</height>
+      </rect>
+     </property>
+    </widget>
+    <zorder>frame_2</zorder>
+    <zorder>label</zorder>
+    <zorder>label_2</zorder>
+    <zorder>label_3</zorder>
+    <zorder>label_4</zorder>
+    <zorder>plainTextEdit</zorder>
+    <zorder>plainTextEdit_2</zorder>
+    <zorder>plainTextEdit_3</zorder>
+    <zorder>label_5</zorder>
+    <zorder>plainTextEdit_4</zorder>
+    <zorder>pushButton</zorder>
+    <zorder>label_6</zorder>
+    <zorder>textBrowser</zorder>
+    <zorder>pushButton_2</zorder>
+    <zorder>tableWidget</zorder>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -282,7 +326,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuCorte_1">

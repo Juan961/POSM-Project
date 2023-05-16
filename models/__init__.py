@@ -1,3 +1,3 @@
-from .student import Student
+from .user import User
 from .assigment import Assigment
-from .professor import Professor
+from .note import Note
