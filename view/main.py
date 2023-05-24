@@ -4,6 +4,7 @@ from PyQt5 import uic
 
 from .registrar import RegistrarView
 from .ingresar import IngresarView
+from .ingresares import IngresarViewEs
 
 from models import User
 
@@ -28,6 +29,7 @@ class MainView(QMainWindow):
         else:
             self.err_us.setVisible(False)
             IngresarView()
+            #Falta la Condicion de comprobar el rol si es estudiante IngresarViewEs y si es profesor IngresarView()
 
     def regis(self):
         viewregistrar= RegistrarView()
