@@ -49,21 +49,39 @@ class User:
     def add_note(student_code, assigment_name, note, court):
         return Note(student_code, assigment_name, note, court)
 
+    @staticmethod
+    def get_student(student_code):
+        cursor = get_cursor()
+        cursor.execute('SELECT * FROM Note WHERE student_code = ?', (str(student_code),))
+
+        result = cursor.fetchone()
+
+        if not result: return None
+
+        col_names = [desc[0] for desc in cursor.description]
+        result_dict = {}
+        for i in range(len(result)):
+            result_dict[col_names[i]] = result[i]
+
+        return result_dict
+
 
     @staticmethod
     def get_notes(student_code, assigment_name):
+        user = User.get_student(student_code)
+
+        if not user: return None, "student"
+
         cursor = get_cursor()
         cursor.execute("SELECT * FROM Note WHERE student_code = ? AND assigment_name = ?", (student_code, assigment_name))
 
+        result = cursor.fetchone()
+
+        if not result: return None, "note"
+
         col_names = [desc[0] for desc in cursor.description]
-        notes = []
+        result_dict = {}
+        for i in range(len(result)):
+            result_dict[col_names[i]] = result[i]
 
-        for row in cursor.fetchall():
-            result_dict = {}
-            for i in range(len(row)):
-                result_dict[col_names[i]] = row[i]
-            notes.append(result_dict)
-
-        cursor.close()
-
-        return notes
+        return result_dict, None
