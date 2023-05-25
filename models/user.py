@@ -3,9 +3,10 @@ import sqlite3
 
 from data.db import get_cursor, commit_db
 
-from .note import Note
+from .professorNote import ProfessorNote
+from .studentNote import StudentNote
 
-from utils.exception import ModelNotFound, UserExists
+from utils.exception import UserExists
 
 
 class User:
@@ -25,7 +26,7 @@ class User:
             commit_db()
         
         except sqlite3.IntegrityError as e:
-            raise UserExists("Student is already in the db")
+            raise UserExists("User is already in the db")
 
 
     @staticmethod
@@ -46,13 +47,19 @@ class User:
 
 
     @staticmethod
-    def add_note(student_code, assigment_name, note, court):
-        return Note(student_code, assigment_name, note, court)
+    def add_note_professor(student_code, assigment_name, note, court):
+        return ProfessorNote(student_code, assigment_name, note, court)
+
 
     @staticmethod
-    def get_student(student_code):
+    def add_note_student(student_code, assigment_name, note, court):
+        return StudentNote(student_code, assigment_name, note, court)
+
+
+    @staticmethod
+    def get_user(user_code):
         cursor = get_cursor()
-        cursor.execute('SELECT * FROM Note WHERE student_code = ?', (str(student_code),))
+        cursor.execute('SELECT * FROM User WHERE code = ?', (str(user_code),))
 
         result = cursor.fetchone()
 
@@ -67,13 +74,18 @@ class User:
 
 
     @staticmethod
-    def get_notes(student_code, assigment_name):
-        user = User.get_student(student_code)
+    def get_notes(user_code, assigment_name,assigment_code):
+        user = User.get_user(user_code)
 
-        if not user: return None, "student"
+        if not user: return None, "user"
 
         cursor = get_cursor()
-        cursor.execute("SELECT * FROM Note WHERE student_code = ? AND assigment_name = ?", (student_code, assigment_name))
+
+        if user["role"] == "STUDENT":
+            cursor.execute("SELECT * FROM Note WHERE assigment_code = ? AND assigment_name = ?", (assigment_code, assigment_name))
+
+        else:
+            cursor.execute("SELECT * FROM Note WHERE student_code = ? AND assigment_name = ?", (user_code, assigment_name))
 
         result = cursor.fetchone()
 

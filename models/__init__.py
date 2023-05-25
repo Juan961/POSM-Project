@@ -1,2 +1,4 @@
 from .user import User
-from .note import Note
+from .assigment import Assigment
+from .professorNote import ProfessorNote
+from .studentNote import StudentNote

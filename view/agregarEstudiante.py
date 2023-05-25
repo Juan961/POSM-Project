@@ -2,7 +2,7 @@ from PyQt5.QtWidgets import QMainWindow
 from PyQt5 import uic
 
 
-from models import User
+from models import ProfessorNote
 
 
 class AgregarEsView(QMainWindow):
@@ -35,4 +35,5 @@ class AgregarEsView(QMainWindow):
             corte = 3
 
         self.notac.setText(str(round(nota,1)))
-        User.add_note(codies, mate, nota, corte)
+
+        ProfessorNote(codies, mate, nota, corte)

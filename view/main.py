@@ -28,8 +28,14 @@ class MainView(QMainWindow):
             self.err_us.setVisible(True)
         else:
             self.err_us.setVisible(False)
-            IngresarView()
-            #Falta la Condicion de comprobar el rol si es estudiante IngresarViewEs y si es profesor IngresarView()
+
+            user = User.get_user(cod)
+            if user["role"] == "PROFESSOR":
+                IngresarView()
+
+            elif user["role"] == "STUDENT":
+                IngresarViewEs()
+
 
     def regis(self):
         viewregistrar= RegistrarView()
