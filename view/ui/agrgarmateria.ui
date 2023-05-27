@@ -6,28 +6,28 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>478</width>
-    <height>287</height>
+    <width>854</width>
+    <height>480</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Agregar notas</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(176,196,222);</string>
+   <string notr="true">background-color: white;</string>
   </property>
   <widget class="QLabel" name="label_4">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>100</y>
+     <x>340</x>
+     <y>180</y>
      <width>160</width>
      <height>39</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Comic Sans MS</family>
+     <family>Montserrat Thin</family>
      <pointsize>14</pointsize>
      <weight>75</weight>
      <bold>true</bold>
@@ -40,15 +40,15 @@
   <widget class="QLabel" name="label_6">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>240</y>
+     <x>170</x>
+     <y>380</y>
      <width>150</width>
      <height>40</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Comic Sans MS</family>
+     <family>Montserrat Thin</family>
      <pointsize>14</pointsize>
      <weight>75</weight>
      <bold>true</bold>
@@ -61,15 +61,15 @@
   <widget class="QLineEdit" name="pro">
    <property name="geometry">
     <rect>
-     <x>190</x>
-     <y>140</y>
+     <x>380</x>
+     <y>230</y>
      <width>90</width>
      <height>40</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Comic Sans MS</family>
+     <family>Montserrat Thin</family>
      <pointsize>12</pointsize>
     </font>
    </property>
@@ -77,24 +77,32 @@
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(255, 255, 255);</string>
+    <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 15px;
+padding: 0px 10px;
+border-width: 2px;
+border-style: solid;
+border-color: #A3A3A3;</string>
+   </property>
+   <property name="placeholderText">
+    <string>4.0</string>
    </property>
   </widget>
   <widget class="QRadioButton" name="corte2">
    <property name="geometry">
     <rect>
-     <x>180</x>
-     <y>190</y>
+     <x>360</x>
+     <y>300</y>
      <width>130</width>
      <height>30</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Comic Sans MS</family>
+     <family>Montserrat Thin</family>
      <pointsize>16</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
+     <weight>50</weight>
+     <bold>false</bold>
     </font>
    </property>
    <property name="text">
@@ -107,34 +115,42 @@
   <widget class="QLineEdit" name="matees">
    <property name="geometry">
     <rect>
-     <x>250</x>
-     <y>50</y>
+     <x>370</x>
+     <y>90</y>
      <width>220</width>
-     <height>40</height>
+     <height>41</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Comic Sans MS</family>
+     <family>Montserrat Thin</family>
      <pointsize>12</pointsize>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(255, 255, 255);</string>
+    <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 15px;
+padding: 0px 10px;
+border-width: 2px;
+border-style: solid;
+border-color: #A3A3A3;</string>
+   </property>
+   <property name="placeholderText">
+    <string>Cálculo</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_5">
    <property name="geometry">
     <rect>
-     <x>320</x>
-     <y>100</y>
+     <x>520</x>
+     <y>180</y>
      <width>160</width>
      <height>39</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Comic Sans MS</family>
+     <family>Montserrat Thin</family>
      <pointsize>14</pointsize>
      <weight>75</weight>
      <bold>true</bold>
@@ -147,15 +163,15 @@
   <widget class="QTextBrowser" name="notac">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>240</y>
+     <x>340</x>
+     <y>380</y>
      <width>200</width>
      <height>40</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Comic Sans MS</family>
+     <family>Montserrat Thin</family>
      <pointsize>12</pointsize>
     </font>
    </property>
@@ -166,18 +182,18 @@
   <widget class="QRadioButton" name="corte3">
    <property name="geometry">
     <rect>
-     <x>340</x>
-     <y>190</y>
+     <x>540</x>
+     <y>300</y>
      <width>130</width>
      <height>30</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Comic Sans MS</family>
+     <family>Montserrat Thin</family>
      <pointsize>16</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
+     <weight>50</weight>
+     <bold>false</bold>
     </font>
    </property>
    <property name="text">
@@ -190,15 +206,15 @@
   <widget class="QLineEdit" name="lab">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>140</y>
+     <x>200</x>
+     <y>230</y>
      <width>90</width>
      <height>40</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Comic Sans MS</family>
+     <family>Montserrat Thin</family>
      <pointsize>12</pointsize>
     </font>
    </property>
@@ -206,21 +222,29 @@
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(255, 255, 255);</string>
+    <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 15px;
+padding: 0px 10px;
+border-width: 2px;
+border-style: solid;
+border-color: #A3A3A3;</string>
+   </property>
+   <property name="placeholderText">
+    <string>4.0</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>100</y>
+     <x>160</x>
+     <y>180</y>
      <width>160</width>
      <height>39</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Comic Sans MS</family>
+     <family>Montserrat Thin</family>
      <pointsize>14</pointsize>
      <weight>75</weight>
      <bold>true</bold>
@@ -233,15 +257,15 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>150</x>
-     <y>50</y>
+     <x>250</x>
+     <y>90</y>
      <width>97</width>
      <height>30</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Comic Sans MS</family>
+     <family>Montserrat Thin</family>
      <pointsize>14</pointsize>
      <weight>75</weight>
      <bold>true</bold>
@@ -254,18 +278,18 @@
   <widget class="QRadioButton" name="corte1">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>190</y>
+     <x>180</x>
+     <y>300</y>
      <width>130</width>
      <height>30</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Comic Sans MS</family>
+     <family>Montserrat Thin</family>
      <pointsize>16</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
+     <weight>50</weight>
+     <bold>false</bold>
     </font>
    </property>
    <property name="text">
@@ -278,15 +302,15 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>251</width>
+     <x>90</x>
+     <y>20</y>
+     <width>261</width>
      <height>30</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Comic Sans MS</family>
+     <family>Montserrat Thin</family>
      <pointsize>14</pointsize>
      <weight>75</weight>
      <bold>true</bold>
@@ -299,34 +323,42 @@
   <widget class="QLineEdit" name="codiestu">
    <property name="geometry">
     <rect>
-     <x>250</x>
-     <y>0</y>
+     <x>370</x>
+     <y>20</y>
      <width>220</width>
-     <height>40</height>
+     <height>41</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Comic Sans MS</family>
+     <family>Montserrat Thin</family>
      <pointsize>12</pointsize>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(255, 255, 255);</string>
+    <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 15px;
+padding: 0px 10px;
+border-width: 2px;
+border-style: solid;
+border-color: #A3A3A3;</string>
+   </property>
+   <property name="placeholderText">
+    <string>875</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="par">
    <property name="geometry">
     <rect>
-     <x>360</x>
-     <y>140</y>
+     <x>560</x>
+     <y>230</y>
      <width>90</width>
      <height>40</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Comic Sans MS</family>
+     <family>Montserrat Thin</family>
      <pointsize>12</pointsize>
     </font>
    </property>
@@ -334,29 +366,123 @@
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(255, 255, 255);</string>
+    <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 15px;
+padding: 0px 10px;
+border-width: 2px;
+border-style: solid;
+border-color: #A3A3A3;</string>
+   </property>
+   <property name="placeholderText">
+    <string>4.0</string>
    </property>
   </widget>
   <widget class="QPushButton" name="agregarno">
    <property name="geometry">
     <rect>
-     <x>370</x>
-     <y>240</y>
+     <x>570</x>
+     <y>380</y>
      <width>100</width>
-     <height>40</height>
+     <height>41</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Comic Sans MS</family>
+     <family>Raleway Thin</family>
      <pointsize>12</pointsize>
     </font>
    </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(255, 248, 220);</string>
+    <string notr="true">background-color:#25D683;
+color: white;
+border-radius: 10px;</string>
    </property>
    <property name="text">
     <string>Agregar</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="err_code">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>70</y>
+     <width>221</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Montserrat Thin</family>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(254, 97, 102);
+</string>
+   </property>
+   <property name="text">
+    <string>Codigo de materia no encontrado</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="err_ma">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>140</y>
+     <width>151</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Montserrat Thin</family>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(254, 97, 102);
+</string>
+   </property>
+   <property name="text">
+    <string>Materia no encontrada</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="err_notes">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>440</y>
+     <width>211</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Montserrat Thin</family>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(254, 97, 102);
+</string>
+   </property>
+   <property name="text">
+    <string>Faltan notas / notas faltantes</string>
    </property>
   </widget>
  </widget>

@@ -10,29 +10,54 @@ class AgregarEsView(QMainWindow):
         super().__init__()
         self.inagre()
 
+
     def inagre(self):
-        uic.loadUi('view/ui/agrgarmateria.ui',self)
+        uic.loadUi('view/ui/agrgarmateria.ui', self)
         self.show()
         self.agregarno.clicked.connect(lambda: self.calno())
+        self.err_code.setVisible(False)
+        self.err_ma.setVisible(False)
+        self.err_notes.setVisible(False)
+
 
     def calno(self):
-        codies=int(self.codiestu.text())
-        mate=self.matees.text()
-        labo=float(self.lab.text())
-        Proy=float(self.pro.text())
-        Parc=float(self.par.text())
+        self.err_code.setVisible(False)
+        self.err_ma.setVisible(False)
+        self.err_notes.setVisible(False)
 
-        if self.corte1.isChecked()==True:
-            nota = (labo*(1/3))+(Proy*1/3)+(Parc*1/3)
-            corte = 1
+        try:
+            codies = int(self.codiestu.text())
+        
+        except ValueError:
+            self.err_code.setVisible(True)
+            return
 
-        elif self.corte2.isChecked()==True:
-            nota=(labo*(1/3))+(Proy*1/3)+(Parc*1/3)
-            corte = 2
+        mate = self.matees.text()
+
+        if mate == "":
+            self.err_ma.setVisible(True)
+            return
+
+        try:
+            labo = float(self.lab.text())
+            Proy = float(self.pro.text())
+            Parc = float(self.par.text())
+
+        except ValueError:
+            self.err_notes.setVisible(True)
+            return
+
+        if self.corte1.isChecked():
+            note = (labo*(1/3))+(Proy*1/3)+(Parc*1/3)
+            court = 1
+
+        elif self.corte2.isChecked():
+            note = (labo*(1/3))+(Proy*1/3)+(Parc*1/3)
+            court = 2
 
         else:
-            nota=(labo*(1/4))+(Proy*1/4)+(Parc*2/4)
-            corte = 3
+            note = (labo*(1/4))+(Proy*1/4)+(Parc*2/4)
+            court = 3
 
-        self.notac.setText(str(round(nota,1)))
-        User.add_note(codies, mate, nota, corte)
+        self.notac.setText(str(round(note,1)))
+        User.add_note_student(codies, mate, note, court)

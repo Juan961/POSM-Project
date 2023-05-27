@@ -13,10 +13,9 @@ class Assigment:
             self.name = name
             cursor = get_cursor()
             cursor.execute("INSERT INTO Assigment (code, name) VALUES (?, ?)", (self.code, self.name))
+            commit_db()
             cursor.close()
 
-            commit_db()
-        
         except sqlite3.IntegrityError as e:
             raise UserExists("Student is already in the db")
 
@@ -25,8 +24,8 @@ class Assigment:
     def get_assigmet(assigment_code):
         cursor = get_cursor()
         cursor.execute('SELECT * FROM Assigment WHERE code = ?', (str(assigment_code),))
-
         result = cursor.fetchone()
+        cursor.close()
 
         if not result: return None
 

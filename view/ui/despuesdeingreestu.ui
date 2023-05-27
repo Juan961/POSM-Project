@@ -6,23 +6,23 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>393</width>
-    <height>255</height>
+    <width>854</width>
+    <height>480</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Seleccionar acción</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(176,196,222);</string>
+   <string notr="true">background-color: white;</string>
   </property>
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>390</width>
-     <height>252</height>
+     <width>851</width>
+     <height>481</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
@@ -58,14 +58,20 @@
        <widget class="QPushButton" name="agregar">
         <property name="font">
          <font>
-          <family>Comic Sans MS</family>
+          <family>Raleway Thin</family>
           <pointsize>18</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
+          <weight>50</weight>
+          <bold>false</bold>
          </font>
         </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(255, 248, 220);</string>
+         <string notr="true">background-color:#25D683;
+color: white;
+border-radius: 10px;
+padding: 5px 10px;</string>
         </property>
         <property name="text">
          <string>Agregar Materia</string>
@@ -89,14 +95,20 @@
        <widget class="QPushButton" name="consul">
         <property name="font">
          <font>
-          <family>Comic Sans MS</family>
+          <family>Raleway Thin</family>
           <pointsize>18</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
+          <weight>50</weight>
+          <bold>false</bold>
          </font>
         </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(255, 248, 220);</string>
+         <string notr="true">background-color:#25D683;
+color: white;
+border-radius: 10px;
+padding: 5px 10px;</string>
         </property>
         <property name="text">
          <string>Consultar notas</string>

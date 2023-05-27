@@ -27,6 +27,7 @@ class StudentNote:
         cursor = get_cursor()
         cursor.execute("SELECT * FROM StudentNote WHERE assigment_code = ? AND assigment_name = ?", (self.assigment_code, self.assigment_name))
         result = cursor.fetchone()
+        cursor.close()
 
         if result: return result
 
@@ -38,6 +39,7 @@ class StudentNote:
         cursor = get_cursor()
         cursor.execute("SELECT * FROM StudentNote WHERE assigment_code = ? AND assigment_name = ?", (assigment_code, assigment_name))
         result = cursor.fetchone()
+        cursor.close()
 
         if result: return result
 
@@ -49,9 +51,10 @@ class StudentNote:
         cursor = get_cursor()
 
         cursor.execute(f"INSERT INTO StudentNote (id, court_{court}, assigment_code, assigment_name) VALUES (?, ?, ?, ?)", (str(uuid.uuid4()), note, assigment_code, assigment_name))
-        cursor.close()
 
         commit_db()
+
+        cursor.close()
 
         return StudentNote.get_note(assigment_code, assigment_name)
 
@@ -61,8 +64,8 @@ class StudentNote:
         cursor = get_cursor()
 
         cursor.execute(f"UPDATE StudentNote SET court_{court} = ? WHERE assigment_code = ? AND assigment_name = ?", (note, assigment_code, assigment_name))
+        commit_db()
         cursor.close()
 
-        commit_db()
 
         return StudentNote.get_note(assigment_code, assigment_name)

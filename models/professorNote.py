@@ -28,6 +28,7 @@ class ProfessorNote:
         cursor = get_cursor()
         cursor.execute("SELECT * FROM ProfessorNote WHERE student_code = ? AND assigment_name = ?", (student_code, assigment_name))
         result = cursor.fetchone()
+        cursor.close()
 
         if result: return result
 
@@ -37,11 +38,9 @@ class ProfessorNote:
     @staticmethod
     def create_note(student_code, assigment_name, note, court):
         cursor = get_cursor()
-
         cursor.execute(f"INSERT INTO ProfessorNote (id, court_{court}, student_code, assigment_name) VALUES (?, ?, ?, ?)", (str(uuid.uuid4()), note, student_code, assigment_name))
-        cursor.close()
-
         commit_db()
+        cursor.close()
 
         return ProfessorNote.get_note(student_code, assigment_name)
 
@@ -51,8 +50,7 @@ class ProfessorNote:
         cursor = get_cursor()
 
         cursor.execute(f"UPDATE ProfessorNote SET court_{court} = ? WHERE student_code = ? AND assigment_name = ?", (note, student_code, assigment_name))
-        cursor.close()
-
         commit_db()
+        cursor.close()
 
         return ProfessorNote.get_note(student_code, assigment_name)

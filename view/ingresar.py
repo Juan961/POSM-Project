@@ -9,7 +9,7 @@ from .consultarEstudiante import ConsultarEsView
 class IngresarView(QMainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('view/ui/despuesdeingre.ui',self)
+        uic.loadUi('view/ui/despuesdeingre.ui', self)
         self.show()
         self.inres()
 

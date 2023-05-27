@@ -9,7 +9,7 @@ from .consultarMateria import ConsultarEsView
 class IngresarViewEs(QMainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('view/ui/despuesdeingreestu.ui',self)
+        uic.loadUi('view/ui/despuesdeingreestu.ui', self)
         self.show()
         self.inres()
 

@@ -16,25 +16,34 @@ class MainView(QMainWindow):
         self.setupUi(self)
         self.show()
 
+
     def setupUi(self, MainWindow):
         self.ingresar.clicked.connect(lambda: self.ing())
         self.registrarse.clicked.connect(lambda: self.regis())
         self.err_us.setVisible(False)
 
+
     def ing(self):
-        cod=int(self.codigo.text())
+        self.err_us.setVisible(False)
+
+        try:
+            cod=int(self.codigo.text())
+
+        except ValueError:
+            self.err_us.setVisible(True)
+            return
 
         if User.login(cod)==None:
             self.err_us.setVisible(True)
-        else:
-            self.err_us.setVisible(False)
+            return 
 
-            user = User.get_user(cod)
-            if user["role"] == "PROFESSOR":
-                IngresarView()
+        user = User.get_user(cod)
 
-            elif user["role"] == "STUDENT":
-                IngresarViewEs()
+        if user["role"] == "PROFESSOR":
+            IngresarView()
+
+        elif user["role"] == "STUDENT":
+            IngresarViewEs()
 
 
     def regis(self):
