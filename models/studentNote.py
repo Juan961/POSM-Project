@@ -9,7 +9,7 @@ class StudentNote:
         if 0 < note > 5.0: raise Exception("Note not valid")
         if 1 < court > 3: raise Exception("Court not valid")
 
-        self.student_code = assigment_code
+        self.assigment_code = assigment_code
         self.assigment_name = assigment_name
         self.note = note
         self.court = court

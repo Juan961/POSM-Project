@@ -5,6 +5,7 @@ from data.db import get_cursor, commit_db
 
 from .professorNote import ProfessorNote
 from .studentNote import StudentNote
+from .assigment import Assigment
 
 from utils.exception import UserExists
 
@@ -75,28 +76,40 @@ class User:
 
 
     @staticmethod
-    def get_notes(user_code, assigment_name, assigment_code):
-        user = User.get_user(user_code)
-
-        if not user: return None, "user"
-
+    def get_notes_student(assigment_code, assigment_name):
         cursor = get_cursor()
 
-        if user["role"] == "STUDENT":
-            cursor.execute("SELECT * FROM StudentNote WHERE assigment_code = ? AND assigment_name = ?", (assigment_code, assigment_name))
-
-        else:
-            cursor.execute("SELECT * FROM ProfessorNote WHERE student_code = ? AND assigment_name = ?", (user_code, assigment_name))
+        cursor.execute("SELECT * FROM StudentNote WHERE assigment_code = ? AND assigment_name = ?", (assigment_code, assigment_name))
 
         result = cursor.fetchone()
 
         cursor.close()
 
-        if not result: return None, "note"
+        if not result: return None
 
         col_names = [desc[0] for desc in cursor.description]
         result_dict = {}
         for i in range(len(result)):
             result_dict[col_names[i]] = result[i]
 
-        return result_dict, None
+        return result_dict
+
+
+    @staticmethod
+    def get_notes_professor(user_code, assigment_name):
+        cursor = get_cursor()
+
+        cursor.execute("SELECT * FROM ProfessorNote WHERE student_code = ? AND assigment_name = ?", (user_code, assigment_name))
+
+        result = cursor.fetchone()
+
+        cursor.close()
+
+        if not result: return None
+
+        col_names = [desc[0] for desc in cursor.description]
+        result_dict = {}
+        for i in range(len(result)):
+            result_dict[col_names[i]] = result[i]
+
+        return result_dict

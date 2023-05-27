@@ -2,7 +2,7 @@ from PyQt5.QtWidgets import QMainWindow
 from PyQt5 import uic
 
 
-from models import Assigment
+from models import User
 
 
 class ConsultarEsView(QMainWindow):
@@ -15,44 +15,32 @@ class ConsultarEsView(QMainWindow):
         uic.loadUi('view/ui/consultarpes.ui', self)
         self.show()
         self.burcarno.clicked.connect(lambda: self.bus())
-        self.err_code.setVisible(False)
-        self.err_ma.setVisible(False)
+        self.err_not_found.setVisible(False)
         self.err_notes.setVisible(False)
 
 
     def bus(self):
-        self.err_code.setVisible(False)
-        self.err_ma.setVisible(False)
+        self.err_not_found.setVisible(False)
         self.err_notes.setVisible(False)
 
         try:
             codies = int(self.codiesc.text())
 
         except ValueError:
-            self.err_es.setVisible(True)
+            self.err_not_found.setVisible(True)
             return
 
         mate = self.mateesc.text()
 
         if mate == "":
-            self.err_ma.setVisible(True)
+            self.err_not_found.setVisible(True)
             return
 
-        notes, err = Assigment.get_notes(None, mate, codies)
+        notes = User.get_notes_student(codies, mate)
 
         if not notes:
-            if err == "student":
-                self.err_es.setVisible(True)
-            else:
-                self.err_es.setVisible(False)
-
-            if err == "note":
-                self.err_ma.setVisible(True)
-            else:
-                self.err_ma.setVisible(False)
-
+            self.err_not_found.setVisible(True)
             return
-
 
         corte1b = notes["court_1"]
 
@@ -64,7 +52,7 @@ class ConsultarEsView(QMainWindow):
 
         corte2b = notes["court_2"]
 
-        if not corte1b:
+        if not corte2b:
             self.err_notes.setVisible(True)
             return
 
@@ -72,7 +60,7 @@ class ConsultarEsView(QMainWindow):
 
         corte3b = notes["court_3"]
 
-        if not corte1b:
+        if not corte3b:
             self.err_notes.setVisible(True)
             return
 

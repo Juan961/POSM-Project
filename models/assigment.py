@@ -21,7 +21,7 @@ class Assigment:
 
 
     @staticmethod
-    def get_assigmet(assigment_code):
+    def get_assigment(assigment_code):
         cursor = get_cursor()
         cursor.execute('SELECT * FROM Assigment WHERE code = ?', (str(assigment_code),))
         result = cursor.fetchone()

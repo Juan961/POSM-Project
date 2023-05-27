@@ -10,42 +10,36 @@ class ConsultarEsView(QMainWindow):
         super().__init__()
         self.incon()
 
+
     def incon(self):
         uic.loadUi('view/ui/consultarp.ui', self)
         self.show()
         self.burcarno.clicked.connect(lambda: self.bus())
-        self.err_es.setVisible(False)
-        self.err_ma.setVisible(False)
+        self.err_not_found.setVisible(False)
         self.err_no.setVisible(False)
 
+
     def bus(self):
-        self.err_es.setVisible(False)
-        self.err_ma.setVisible(False)
+        self.err_not_found.setVisible(False)
         self.err_no.setVisible(False)
 
         try:
             codies = int(self.codiesc.text())
 
         except ValueError:
-            self.err_es.setVisible(True)
+            self.err_not_found.setVisible(True)
             return
 
         mate = self.mateesc.text()
 
         if mate == "":
-            self.err_ma.setVisible(True)
+            self.err_not_found.setVisible(True)
             return
 
-
-        notes, err = User.get_notes(codies, mate, None)
+        notes = User.get_notes_professor(codies, mate)
 
         if not notes:
-            if err == "student":
-                self.err_es.setVisible(True)
-
-            if err == "note":
-                self.err_ma.setVisible(True)
-
+            self.err_not_found.setVisible(True)
             return
 
         corte1b = notes["court_1"]
