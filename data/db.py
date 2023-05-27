@@ -1,6 +1,22 @@
-import sqlite3
+import psycopg2
 
-conn = sqlite3.connect("./data/db.db")
+
+endpoint = 'usb-project.cfbmmy7rkrlp.us-east-1.rds.amazonaws.com'
+usuario = 'postgres'
+contraseña = 'postgres'
+nombre_db = 'USB-PROJECT'
+
+conn = psycopg2.connect(
+    host=endpoint,
+    user=usuario,
+    password=contraseña,
+    dbname=nombre_db
+)
+
+endpoint = 'usb-project.cfbmmy7rkrlp.us-east-1.rds.amazonaws.com'
+usuario = 'postgres'
+contraseña = 'postgres'
+nombre_db = 'USBPROJECT'
 
 def get_conn():
     return conn
