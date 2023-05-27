@@ -7,16 +7,5 @@ def test_db():
 
     print( User.login("9946") )
 
-    User.add_note("99461", "Matemáticas", 5.0, 1)
-    User.add_note("99461", "Matemáticas", 5.0, 2)
-    User.add_note("99461", "Matemáticas", 5.0, 3)
-
-    print( User.get_notes("99461", "Matemáticas") )
-
-    User.add_note("99461", "Matemáticas", 3.0, 2)
-
-    print( User.get_notes("99461", "Matemáticas") )
-
-
 if __name__ == "__main__":
     test_db()
